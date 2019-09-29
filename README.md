@@ -27,3 +27,8 @@ Login Credential for Login Into Project
 
 user : deepak
 password deepak
+
+#####Future Improvement #########################
+1. Backend part need more improvement.
+2. Front Performance could be increased.
+3. Redis or memcached can be used for caching.
