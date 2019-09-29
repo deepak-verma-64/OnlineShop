@@ -1,7 +1,7 @@
 # OnlineShop
 For Running the Project
 
-1. Go to Directory 
+1. Go to Directory
 =>cd OnlineShop
 
 2. Install pipenv (pipenv for installing packages and creating virtual environment)
@@ -20,7 +20,8 @@ For Running the Project
 
 =>	python manage.py runserver
 
-
+Alternative Installtions 
+pip install -r requirements.txt
 
 ####
 Login Credential for Login Into Project
