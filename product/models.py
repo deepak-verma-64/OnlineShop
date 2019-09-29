@@ -51,15 +51,3 @@ class Cart(models.Model):
 	quantity = models.IntegerField(default=1)
 
 
-	def remove(self, product, cart):
-		print (product)
-		product_id = str(product.product_id)
-		print (product_id, cart)
-		if product_id in cart:
-			# Subtract 1 from the quantity
-			cart[product_id]['quantity'] -= 1
-			# If the quantity is now 0, then delete the item
-			if cart[product_id]['quantity'] == 0:
-				del cart[product_id]
-			self.save()
-

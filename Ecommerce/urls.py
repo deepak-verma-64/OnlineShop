@@ -24,13 +24,5 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name = 'index'),
     path('product/', include('product.urls')),
     path('user/', include('django.contrib.auth.urls')),
-    # path('user/login/',auth_views.LoginView.as_view(),name='login')
-
-# user/ logout/ [name='logout']
-# user/ password_change/ [name='password_change']
-# user/ password_change/done/ [name='password_change_done']
-# user/ password_reset/ [name='password_reset']
-# user/ password_reset/done/ [name='password_reset_done']
-# user/ reset/<uidb64>/<token>/ [name='password_reset_confirm']
-# user/ reset/done/ [name='password_reset_complete']
+    
 ]
