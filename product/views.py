@@ -12,6 +12,9 @@ import json
 
 class IndexView(View):
 	def get(self, request, *args, **kwargs):
+		if request.user.is_authenticated:
+			return redirect('product/product_list')
+
 		return render(request,'registration/login.html')
 
 
