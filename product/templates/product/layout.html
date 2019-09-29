@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+{% load static %}
+
+<meta charset="utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="max-age=604800" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Bootstrap-ecommerce by Vosidiy">
+<link href="{% static 'product/images/favicons.ico' %}" rel="shortcut icon" type="image/x-icon">
+{% csrf_token %}
+<title>Online Shopping</title>
+
+
+
+<header class="section-header bg-secondary">
+    <section class="header-main shadow">
+        <div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <a href="{% url 'product_list' %}">
+        <div class="brand-wrap" >
+            <img class="logo"  src="{% static 'product/images/logos/online.jpg' %}">
+            <h2 class="logo-text">Online Shopping</h2>
+        </div>
+        </a>
+        </div>
+        <div class="col-sm">
+            <a href="{% url 'shopping_cart'%}" class="btn btn-info btn-lg">
+                <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
+                <span id="cart_quantity">{{ carts| length }}</span>
+
+            </a>
+        </div>
+
+        <div class="col-sm">
+            <div class="container">
+                  {% if user.is_authenticated %}
+                  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Welcome, {{ user.get_username }}
+                  <span class="caret"></span></button>
+                  {% endif %}
+                  <ul class="dropdown-menu">
+                    <li><a href="{% url 'product_list' %}">Home</a></li>
+                    <li><a href="#">About US</a></li>
+                    <li><a href="{% url 'logout'%}">Logout</a></li>
+                  </ul>
+            </div>
+        </div>
+
+    </div> <!-- row.// -->
+        </div> <!-- container.// -->
+    </section> <!-- header-main .// -->
+</header> <!-- section-header.// -->
+
+{% block body%} {%endblock%}
+
+
+<!-- ========================= FOOTER ========================= -->
+<footer class="section-footer bg-secondary">
+    <div class="container">
+        <section class="footer-top padding-top">
+            <div class="row">
+                <aside class="col-sm-3 col-md-3 white">
+                    <h5 class="title">Customer Services</h5>
+                    <ul class="list-unstyled">
+                        <li> <a href="#">Help center</a></li>
+                        <li> <a href="#">Money refund</a></li>
+                        <li> <a href="#">Terms and Policy</a></li>
+                        <li> <a href="#">Open dispute</a></li>
+                    </ul>
+                </aside>
+                <aside class="col-sm-3  col-md-3 white">
+                    <h5 class="title">My Account</h5>
+                    <ul class="list-unstyled">
+                        <li> <a href="#"> User Login </a></li>
+                        <li> <a href="#"> User register </a></li>
+                        <li> <a href="#"> Account Setting </a></li>
+                        <li> <a href="#"> My Orders </a></li>
+                        <li> <a href="#"> My Wishlist </a></li>
+                    </ul>
+                </aside>
+                <aside class="col-sm-3  col-md-3 white">
+                    <h5 class="title">About</h5>
+                    <ul class="list-unstyled">
+                        <li> <a href="#"> Our history </a></li>
+                        <li> <a href="#"> How to buy </a></li>
+                        <li> <a href="#"> Delivery and payment </a></li>
+                        <li> <a href="#"> Advertice </a></li>
+                        <li> <a href="#"> Partnership </a></li>
+                    </ul>
+                </aside>
+                <aside class="col-sm-3">
+                    <article class="white">
+                        <h5 class="title">Contacts</h5>
+                        <p>
+                            <strong>Phone: </strong> +91-9560345233 <br> 
+                            <strong>Fax:</strong> +123456789
+                        </p>
+
+                         <div class="btn-group white">
+                            <a class="btn btn-facebook" title="Facebook" target="_blank" href="#"><i class="fab fa-facebook-f  fa-fw"></i></a>
+                            <a class="btn btn-instagram" title="Instagram" target="_blank" href="#"><i class="fab fa-instagram  fa-fw"></i></a>
+                            <a class="btn btn-youtube" title="Youtube" target="_blank" href="#"><i class="fab fa-youtube  fa-fw"></i></a>
+                            <a class="btn btn-twitter" title="Twitter" target="_blank" href="#"><i class="fab fa-twitter  fa-fw"></i></a>
+                        </div>
+                    </article>
+                </aside>
+            </div> <!-- row.// -->
+            <br> 
+        </section>
+        <section class="footer-bottom row border-top-white">
+            <div class="col-sm-6"> 
+                <p class="text-white-50">Made By Deepak Verma</p>
+            </div>
+            <div class="col-sm-6 text-right">
+                <p class="text-sm-right text-white-50">
+    Copyright &copy 2019 Online Shopping <br>
+                </p>
+            </div>
+        </section> <!-- //footer-top -->
+    </div><!-- //container -->
+</footer>
+<!-- ========================= FOOTER END // ========================= -->
+
+
+
+<!-- jQuery -->
+<script src="{% static 'product/js/jquery-2.0.0.min.js' %}" type="text/javascript"></script>
+
+<!-- Bootstrap4 files-->
+<script src="{% static 'product/js/bootstrap.bundle.min.js' %}" type="text/javascript"></script>
+<link href="{% static 'product/css/bootstrap.css' %}" rel="stylesheet" type="text/css"/>
+
+<!-- Font awesome 5 -->
+<link href="{% static 'product/fonts/fontawesome/css/fontawesome-all.min.css' %}" type="text/css" rel="stylesheet">
+
+<!-- custom style -->
+<link href="{% static 'product/css/ui.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'product/css/responsive.css' %}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+
+<!-- custom javascript -->
+<script src="{% static 'product/js/script.js' %}" type="text/javascript"></script>
+
+<script>
+
+    $(document).ready(function() {
+
+        $.ajax({method : "GET",
+                   url : "{% url 'item_count' %}",
+                   success: function(result){
+                        response = JSON.parse(result)
+                        var item_count = response.data.item_count;
+                        document.getElementById("cart_quantity").innerHTML = item_count;
+                   }
+               });
+
+        $(".cart.form-control").change(function(){
+            cart_id = $(this).parent().closest('tr').attr('id')
+            quantity = $(this).val()
+            $.ajax({method : "POST",
+                   url : "{% url 'update_cart' %}",
+                   data :{
+                        'cart_id':cart_id,
+                        'quantity':quantity,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                   },
+                   success: function(result){
+                        response = JSON.parse(result)
+                        var item_count = response.data.item_count;
+                        document.getElementById("cart_quantity").innerHTML = item_count;
+
+                        window.location.reload();
+            }});
+        })
+
+        $(".btn.btn-primary.cart").click(function(){
+            product_id = $(this).attr('id')
+
+            $.ajax({method : "POST",
+                   url : "{% url 'add_to_cart' %}",
+                   data :{
+                        'product_id':product_id,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                   },
+                   success: function(result){
+                        response = JSON.parse(result)
+                        var item_count = response.data.item_count;
+                        document.getElementById("cart_quantity").innerHTML = item_count;
+
+            }});
+        });
+
+        
+        $(".btn.btn-outline-danger.remove-item").click(function(){
+            cart_id = $(this).parent().closest('tr').attr('id')
+            $.ajax({method : "POST",
+                   url : "{% url 'remove_from_cart' %}",
+                   data :{
+                        'cart_id':cart_id,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                   },
+                   success: function(result){
+                        response = JSON.parse(result)
+                        window.location.reload();
+                        var item_count = response.data.item_count;
+            }});
+        });
+    });
+
+
+</script>

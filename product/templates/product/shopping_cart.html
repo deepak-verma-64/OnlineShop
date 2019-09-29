@@ -1,0 +1,123 @@
+{% extends 'product/layout.html' %}
+<script type="text/javascript">
+	
+</script>
+<body>
+{% block body%}
+{% load static %}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content bg padding-y border-top">
+<div class="container">
+
+<div class="row">
+	<main class="col-sm-9">
+
+<div class="card">
+<table class="table table-hover shopping-cart-wrap">
+<thead class="text-muted">
+<tr>
+  <th scope="col">Product</th>
+  <th scope="col" width="120">Quantity</th>
+  <th scope="col" width="120">Status</th>
+  <th scope="col" width="120">Price</th>
+  <th scope="col" class="text-right" width="200">Action</th>
+</tr>
+</thead>
+<tbody>
+{% for cart in carts %}
+<tr id = "{{ cart.cart_id }}">
+	<td>
+<figure class="media">
+	<div class="img-wrap"><img src="{{ cart.product_id.image_url }}" class="img-thumbnail img-sm"></div>
+	<figcaption class="media-body">
+		<h6 class="title text-truncate">{{ cart.product_id.product_name }}</h6>
+		<dl class="dlist-inline small">
+		  <dt>Category: </dt>
+		  <dd>{{ cart.product_id.category.category_name }}</dd>
+		</dl>
+		<dl class="dlist-inline small">
+		  <dt>Color: </dt>
+		  <dd>Orange color</dd>
+		</dl>
+	</figcaption>
+</figure> 
+	</td>
+	<td> 
+		<input class="cart form-control" type="number" min = "1" value="{{ cart.quantity }}" />
+	</td>
+	<td>
+		<span class="instock">{{cart.product_id.Status}}</span>
+	</td>
+	<td> 
+		<div class="price-wrap"> 
+			{% load multiply_template %}
+			<span class="price">₹ {% multiply cart.quantity cart.product_id.price %}</span>
+			<del class="price-old">₹ {% multiply cart.quantity cart.product_id.mrp %}</del>
+		</div> <!-- price-wrap .// -->
+	</td>
+	<td class="text-right"> 
+	<button id="{{cart.cart_id}}" class="btn btn-outline-danger remove-item"> × Remove</button>
+	</td>
+</tr>
+{% endfor %}
+</tbody>
+
+<tfoot>
+	<tr>
+		<td>
+			<a href="{% url 'product_list' %}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
+		</td>
+		<td colspan="3" class="hidden-xs"></td>
+		{%if carts|length%}
+		<td>
+			<a href="{% url 'checkout_cart' %}" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a>
+		</td>
+		{%endif%}
+	</tr>
+</tfoot>
+</table>
+</div> <!-- card.// -->
+
+	</main> <!-- col.// -->
+{% if carts %}
+	<aside class="col-sm-3">
+<p class="alert alert-success">Add Rs 50.00 of eligible items to your order to qualify for FREE Shipping. </p>
+
+
+<dl class="dlist-align h4">
+  <dt>Total:</dt>
+  <dd class="text-right"><strong>₹ {{ total}}</strong></dd>
+</dl>
+<hr>
+<figure class="itemside mb-3">
+	<aside class="aside"><img src="{% static 'product/images/icons/pay-visa.png' %}"></aside>
+	 <div class="text-wrap small text-muted">
+	Bank Offer10% Instant Discount* with Axis Bank Credit and Debit Cards<br>
+	Bank OfferExtra ₹2000 off* on ICICI Bank Credit Cards T&C
+	 </div>
+</figure>
+<figure class="itemside mb-3">
+	<aside class="aside"> <img src="{% static 'product/images/icons/pay-mastercard.png' %}"> </aside>
+	<div class="text-wrap small text-muted">
+Pay by MasterCard and Save 40% off
+	</div>
+</figure>
+
+	</aside> <!-- col.// -->
+</div>
+{%else%}
+<aside class="col-sm-3">
+<div class="cart_empty">
+	<div class="img-wrap">
+	<img src="{% static 'product/images/cart_empty.jpeg' %}" class="img-thumbnail img-sm">
+	<p class="alert alert-success">Shopping Cart is Empty</p>
+	</div>
+{% endif %}
+
+</div> <!-- container .//  -->
+</section>
+{% endblock%}
+
+</body>
+</html>

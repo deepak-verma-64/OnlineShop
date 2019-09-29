@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+{% load static %}
+<style type="text/css">
+	body { margin-top:20px; }
+.panel-title {display: inline;font-weight: bold;}
+.checkbox.pull-right { margin: 0; }
+.pl-ziro { padding-left: 0px; }
+</style>
+<meta charset="utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="max-age=604800" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Bootstrap-ecommerce by Vosidiy">
+<link href="{% static 'product/images/favicons.ico' %}" rel="shortcut icon" type="image/x-icon">
+{% csrf_token %}
+<title>Online Shopping</title>
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <main class="col-sm-12">
+        <article class="card card-product">
+			<div class="card-body">
+				<div class="row">
+					<aside class="col-sm-9">
+			            <div class="panel panel-default">
+			                <div class="panel-heading">
+			                    <h3 class="panel-title">
+			                        Payment Details
+			                    </h3>
+			                    <div class="checkbox pull-right">
+			                        <label>
+			                            <input type="checkbox" />
+			                            Remember
+			                        </label>
+			                    </div>
+			                </div>
+			                <div class="panel-body">
+			                    <form role="form">
+			                    <div class="form-group">
+			                        <label for="cardNumber">
+			                            CARD NUMBER</label>
+			                        <div class="input-group">
+			                            <input type="text" class="form-control" id="cardNumber" placeholder="Valid Card Number"
+			                                required autofocus />
+			                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+			                        </div>
+			                    </div>
+			                    <div class="row">
+			                        <div class="col-xs-7 col-md-7">
+			                            <div class="form-group">
+			                                <label for="expityMonth">
+			                                    EXPIRY DATE</label>
+			                                <div class="col-xs-6 col-lg-6 pl-ziro">
+			                                    <input type="text" class="form-control" id="expityMonth" placeholder="MM" required />
+			                                </div>
+			                                <div class="col-xs-6 col-lg-6 pl-ziro">
+			                                    <input type="text" class="form-control" id="expityYear" placeholder="YY" required /></div>
+			                            </div>
+			                        </div>
+			                        <div class="col-xs-5 col-md-5 pull-right">
+			                            <div class="form-group">
+			                                <label for="cvCode">
+			                                    CV CODE</label>
+			                                <input type="password" class="form-control" id="cvCode" placeholder="CV" required />
+			                            </div>
+			                        </div>
+			                    </div>
+			                    </form>
+			                </div>
+			            </div>
+			           	<span style="color:green;" class="total-price">Total : Rs. {{total}}</span>
+			            <br/>
+			            <a href="http://www.jquery2dotnet.com" class="btn btn-success btn-lg btn-block" role="button">Pay</a>
+			        </div>
+		    </div>
+		    </aside>
+		    </div>
+		    </div>
+		    </article>
+		    </main>
+</div>
+
+</body>
+
+</html>
+
+<script src="{% static 'product/js/jquery-2.0.0.min.js' %}" type="text/javascript"></script>
+
+<!-- Bootstrap4 files-->
+<script src="{% static 'product/js/bootstrap.bundle.min.js' %}" type="text/javascript"></script>
+<link href="{% static 'product/css/bootstrap.css' %}" rel="stylesheet" type="text/css"/>
+
+<!-- Font awesome 5 -->
+<link href="{% static 'product/fonts/fontawesome/css/fontawesome-all.min.css' %}" type="text/css" rel="stylesheet">
+
+<!-- custom style -->
+<link href="{% static 'product/css/ui.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'product/css/responsive.css' %}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+
+<!-- custom javascript -->
+<script src="{% static 'product/js/script.js' %}" type="text/javascript"></script>

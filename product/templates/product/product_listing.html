@@ -1,0 +1,89 @@
+{% extends 'product/layout.html' %}
+
+<body>
+{% block body%}
+{% load static %}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content bg padding-y">
+<div class="container">
+
+<div class="row">
+	<main class="col-sm-9">
+
+{% for product in products %}
+<article class="card card-product">
+	<div class="card-body">
+	<div class="row">
+		<aside class="col-sm-3">
+			<div class="img-wrap"><img src="{{ product.image_url }}"></div>
+		</aside> <!-- col.// -->
+		<article class="col-sm-6">
+				<h4 class="title"> {{product.product_name}} </h4>
+				<div class="rating-wrap  mb-2">
+					<ul class="rating-stars">
+						<li style="width:80%" class="stars-active"> 
+							<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+							<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+							<i class="fa fa-star"></i> 
+						</li>
+						<li>
+							<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+							<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+							<i class="fa fa-star"></i> 
+						</li>
+					</ul>
+					<div class="label-rating">132 reviews</div>
+					<div class="label-rating">154 orders </div>
+				</div> <!-- rating-wrap.// -->
+				<p> {{product.description}}</p>
+				<dl class="dlist-align">
+				  <dt>Brand</dt>
+				  <dd>{{product.brand}}</dd>
+				</dl>  
+				<dl class="dlist-align">
+				  <dt>Color</dt>
+				  <dd>{{product.color}}</dd>
+				</dl> 
+				<dl class="dlist-align">
+				  <dt>Material</dt>
+				  <dd>Syntetic, wooden</dd>
+				</dl>
+				<dl class="dlist-align">
+				  <dt>Publish Date</dt>
+				  <dd>{{product.pub_date}}</dd>
+				</dl>    
+			
+		</article> <!-- col.// -->
+		<aside class="col-sm-3 border-left">
+			<div class="action-wrap">
+				<div class="price-wrap h4">
+					<i class="fa fa-rupee" style="font-size:24px"></i>
+					<span class="price">₹ {{ product.price }} </span><br>	
+					<del class="price-old">₹ {{ product.mrp }}</del>
+				</div> <!-- info-price-detail // -->
+				<p class="text-success">Free shipping</p>
+				<br>
+				<p>
+					<button id ="{{product.product_id}}" href="#" class="btn btn-primary cart"> Add to Cart </button>
+				</p>
+			</div> <!-- action-wrap.// -->
+		</aside> <!-- col.// -->
+	</div> <!-- row.// -->
+	</div> <!-- card-body .// -->
+</article> <!-- card product .// -->
+{% endfor %}
+
+	</main> <!-- col.// -->
+</div>
+
+</div> <!-- container .//  -->
+</section>
+
+{% endblock%}
+
+
+
+</body>
+
+</html>
